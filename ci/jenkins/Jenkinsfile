@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 
 pipeline {
-    agent none
+    agent any
     stages {
         stage('Docker from hub') {
             agent {
@@ -22,5 +22,11 @@ pipeline {
                 sh "echo 'Hello, motherfucker'"
             }
         }
+        stage('Metasplotable 3') {
+            steps {
+                sh 'cd ci/jenkins && vagrant up --provider=virtualbox'
+            }
+        }
     }
 }
+
