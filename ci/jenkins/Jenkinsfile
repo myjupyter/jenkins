@@ -13,7 +13,10 @@ pipeline {
         }
         stage('Docker from dockerfile') {
             agent {
-                dockerfile true 
+                dockerfile {
+                    filename 'Dockerfile'
+                    dir 'ci/jenkins'
+                } 
             }
             steps {
                 sh "echo 'Hello, motherfucker'"
