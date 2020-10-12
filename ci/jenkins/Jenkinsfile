@@ -1,11 +1,22 @@
 #!/usr/bin/env groovy
 
 pipeline {
-    agent { docker { image 'golang' } }
+    agent any
     stages {
-        stage('build') {
+        stage('Docker from hub') {
+            agent {
+                docker { image 'golang:latest'}
+            }
             steps {
                 sh 'go version'
+            }
+        }
+        stage('Docker from dockerfile') {
+            agent {
+                dockerfile true 
+            }
+            steps {
+                sh "echo 'Hello, motherfucker'"
             }
         }
     }
